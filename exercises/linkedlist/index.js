@@ -113,7 +113,7 @@ class LinkedList {
       let tmp = this.head;
       while (tmp) {
         if (counter == index) {
-          let prevNode = this.getAt(counter-1)
+          let prevNode = this.getAt(counter - 1);
           let prevAdd = prevNode.next;
           let newNode = new Node(data, prevAdd);
           prevNode.next = newNode;
@@ -124,8 +124,17 @@ class LinkedList {
       }
     }
   }
+  reverse() {
+    let tmp = null;
+    let next = null;
+    while (this.head) {
+      next = this.head.next;
+      this.head.next = tmp;
+      tmp = this.head;
+      this.head = next;
+    }
+    return tmp;
+  }
 }
-
-const l = new LinkedList();
 
 module.exports = { Node, LinkedList };
