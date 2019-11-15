@@ -151,11 +151,35 @@ class LinkedList {
   containsCycle() {
     let slowPtr = this.head;
     let fastPtr = this.head;
-    while(slowPtr && fastPtr && fastPtr.next){
+    while (slowPtr && fastPtr && fastPtr.next) {
       slowPtr = slowPtr.next;
       fastPtr = fastPtr.next.next;
-      if(slowPtr == fastPtr) {
+      if (slowPtr == fastPtr) {
         return true;
+      }
+    }
+    return false;
+  }
+  findCyleStart() {
+    let slowPtr = this.head;
+    let fastPtr = this.head;
+    let flag = false;
+    while (slowPtr && fastPtr && fastPtr.next) {
+      slowPtr = slowPtr.next;
+      fastPtr = fastPtr.next.next;
+      if (slowPtr == fastPtr) {
+        flag = true;
+        break;
+      }
+    }
+    if (flag) {
+      slowPtr = this.head;
+      while (slowPtr && fastPtr) {
+        slowPtr = slowPtr.next;
+        fastPtr = fastPtr.next;
+        if (slowPtr == fastPtr) {
+          return slowPtr;
+        }
       }
     }
     return false;
@@ -168,6 +192,6 @@ l.insertFirst(1);
 l.insertFirst(2);
 l.insertFirst(3);
 l.insertFirst(4);
-console.log(l.containsCycle());
+console.log(l.findCyleStart());
 
 module.exports = { Node, LinkedList };
