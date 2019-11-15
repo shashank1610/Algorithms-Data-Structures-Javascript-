@@ -135,6 +135,26 @@ class LinkedList {
     }
     return tmp;
   }
+  nthNodeFromLeft(n) {
+    let linkedSize = this.size();
+    let tmp = this.head;
+    let index = linkedSize - n + 1;
+    let counter = 0;
+    while (tmp) {
+      if (counter == n) {
+        return tmp;
+      }
+      tmp = tmp.next;
+      counter++;
+    }
+  }
 }
+const l = new LinkedList();
+console.log(l);
+l.insertFirst(1);
+l.insertFirst(2);
+l.insertFirst(3);
+l.insertFirst(4);
+console.log(l.nthNodeFromLeft(2));
 
 module.exports = { Node, LinkedList };
