@@ -148,13 +148,26 @@ class LinkedList {
       counter++;
     }
   }
+  containsCycle() {
+    let slowPtr = this.head;
+    let fastPtr = this.head;
+    while(slowPtr && fastPtr && fastPtr.next){
+      slowPtr = slowPtr.next;
+      fastPtr = fastPtr.next.next;
+      if(slowPtr == fastPtr) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
+
 const l = new LinkedList();
 console.log(l);
 l.insertFirst(1);
 l.insertFirst(2);
 l.insertFirst(3);
 l.insertFirst(4);
-console.log(l.nthNodeFromLeft(2));
+console.log(l.containsCycle());
 
 module.exports = { Node, LinkedList };
